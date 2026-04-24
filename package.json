@@ -1,0 +1,46 @@
+{
+  "name": "@am25/plank-react-renderer",
+  "version": "1.0.0",
+  "description": "React renderer for Plank CMS rich text content.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src/"
+  },
+  "author": {
+    "name": "Alejandro Mártir",
+    "url": "https://alemartir.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/am25-labs/plank-react-renderer#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/am25-labs/plank-react-renderer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/am25-labs/plank-react-renderer/issues"
+  },
+  "keywords": [
+    "cms",
+    "headless-cms",
+    "rich-text",
+    "tiptap",
+    "react",
+    "renderer",
+    "am25"
+  ],
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "react": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}
