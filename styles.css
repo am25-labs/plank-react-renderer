@@ -1,0 +1,62 @@
+.plank-renderer h1 {
+  font-size: 2em;
+  font-weight: 700;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.plank-renderer h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.plank-renderer h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.plank-renderer p {
+  margin-bottom: 1rem;
+}
+
+.plank-renderer li > p {
+  margin-bottom: 0;
+}
+
+.plank-renderer ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.plank-renderer ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.plank-renderer blockquote {
+  border-left: 2px solid currentColor;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+.plank-renderer pre {
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 0.375rem;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  font-size: 0.875em;
+  line-height: 1.6;
+}
+
+.plank-renderer pre code {
+  font-family: ui-monospace, monospace;
+}
+
+.plank-renderer a {
+  text-decoration: underline;
+}

@@ -52,9 +52,17 @@ Override any node or mark renderer via the `components` prop. Only the nodes you
 />
 ```
 
-## Supported nodes
+## Default styles
 
-All nodes ship with sensible inline styles out of the box. Override any of them via the `components` prop to apply your own classes or styles.
+The package ships a pre-compiled stylesheet with sensible defaults. Import it once in your project:
+
+```css
+@import "@am25/plank-react-renderer/styles.css";
+```
+
+All styles are scoped to the `.plank-renderer` class applied to the wrapper `<div>`, so they won't affect the rest of your layout. Override any node via the `components` prop to apply your own classes or styles instead.
+
+## Supported nodes
 
 | Node              | Default output                                                          |
 | ----------------- | ----------------------------------------------------------------------- |

@@ -142,7 +142,7 @@ export function PlankRenderer({ content, components }: Props) {
   };
 
   return (
-    <div>
+    <div className="plank-renderer">
       {doc.content.map((node, i) => renderNode(node, resolved, i))}
     </div>
   );
