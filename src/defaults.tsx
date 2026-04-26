@@ -1,9 +1,9 @@
 import type { NodeComponents } from "./types.js";
 
 const headingStyles: Record<number, React.CSSProperties> = {
-  1: { fontSize: "2em", fontWeight: 700, margin: "1.75rem 0 0.75rem" },
-  2: { fontSize: "1.5em", fontWeight: 700, margin: "1.5rem 0 0.625rem" },
-  3: { fontSize: "1.25em", fontWeight: 600, margin: "1.25rem 0 0.5rem" },
+  1: { fontSize: "2em", fontWeight: 700, margin: "1.5rem 0 0.75rem" },
+  2: { fontSize: "1.5em", fontWeight: 700, margin: "1.5rem 0 0.75rem" },
+  3: { fontSize: "1.25em", fontWeight: 600, margin: "1.5rem 0 0.75rem" },
 };
 
 export const defaultComponents: Required<NodeComponents> = {
@@ -29,16 +29,13 @@ export const defaultComponents: Required<NodeComponents> = {
       {children}
     </ol>
   ),
-  listItem: ({ children }) => (
-    <li style={{ marginBottom: "0.25rem" }}>{children}</li>
-  ),
+  listItem: ({ children }) => <li>{children}</li>,
   blockquote: ({ children }) => (
     <blockquote
       style={{
-        borderLeft: "3px solid currentColor",
+        borderLeft: "2px solid currentColor",
         paddingLeft: "1rem",
-        margin: "1.25rem 0",
-        opacity: 0.7,
+        margin: "1rem 0",
         fontStyle: "italic",
       }}
     >
