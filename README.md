@@ -1,4 +1,4 @@
-# @am25/plank-react-renderer
+# Plank CMS - React Renderer
 
 React renderer for [Plank CMS](https://github.com/am25-labs/plank-cms) rich text content. Converts the Tiptap JSON output from the `RichText` field into React elements, with full support for custom components per node type.
 
@@ -39,7 +39,12 @@ Override any node or mark renderer via the `components` prop. Only the nodes you
       <blockquote className="border-l-4 pl-4 italic">{children}</blockquote>
     ),
     link: ({ href, target, rel, children }) => (
-      <a href={href} target={target} rel={rel} className="text-blue-500 underline">
+      <a
+        href={href}
+        target={target}
+        rel={rel}
+        className="text-blue-500 underline"
+      >
         {children}
       </a>
     ),
@@ -49,15 +54,17 @@ Override any node or mark renderer via the `components` prop. Only the nodes you
 
 ## Supported nodes
 
-| Node | Default output |
-|---|---|
-| `heading` (h1–h3) | `<h1>` – `<h3>` |
-| `paragraph` | `<p>` |
-| `bulletList` | `<ul>` |
-| `orderedList` | `<ol>` |
-| `listItem` | `<li>` |
-| `blockquote` | `<blockquote>` |
-| `codeBlock` | `<pre><code>` |
+All nodes ship with sensible inline styles out of the box. Override any of them via the `components` prop to apply your own classes or styles.
+
+| Node              | Default output                                                          |
+| ----------------- | ----------------------------------------------------------------------- |
+| `heading` (h1–h3) | `<h1>`–`<h3>` with scaled font sizes, bold weight, and vertical margins |
+| `paragraph`       | `<p>` with bottom margin                                                |
+| `bulletList`      | `<ul>` with `disc` markers and bottom margin                            |
+| `orderedList`     | `<ol>` with `decimal` markers and bottom margin                         |
+| `listItem`        | `<li>` with small bottom margin                                         |
+| `blockquote`      | `<blockquote>` with left border, padding, and italic                    |
+| `codeBlock`       | `<pre><code>` with monospace font, background, and scroll               |
 
 ## Supported marks
 
@@ -65,4 +72,4 @@ Override any node or mark renderer via the `components` prop. Only the nodes you
 
 ## License
 
-MIT
+[MIT](LICENSE) - AM25, S.A.S. DE C.V.
