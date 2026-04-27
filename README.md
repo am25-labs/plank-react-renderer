@@ -48,8 +48,8 @@ Override any node or mark renderer via the `components` prop. Only the nodes you
         {children}
       </a>
     ),
-    image: ({ src, alt }) => (
-      <Image src={src} alt={alt ?? ""} width={800} height={600} className="rounded-lg" />
+    image: ({ src, alt, width, height }) => (
+      <Image src={src} alt={alt ?? ""} width={width ?? 800} height={height ?? 600} className="rounded-lg" />
     ),
   }}
 />

@@ -66,7 +66,6 @@ export type ImageNode = {
   attrs: {
     src: string;
     alt?: string | null;
-    title?: string | null;
     width?: number | null;
     height?: number | null;
   };
@@ -123,7 +122,6 @@ export type NodeComponents = {
   image?: (props: {
     src: string;
     alt?: string | null;
-    title?: string | null;
     width?: number | null;
     height?: number | null;
   }) => React.ReactElement;

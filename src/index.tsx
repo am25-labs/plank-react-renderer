@@ -134,13 +134,7 @@ function renderNode(
     const n = node as ImageNode;
     return (
       <React.Fragment key={key}>
-        {components.image({
-          src: n.attrs.src,
-          alt: n.attrs.alt,
-          title: n.attrs.title,
-          width: n.attrs.width,
-          height: n.attrs.height,
-        })}
+        {components.image({ src: n.attrs.src, alt: n.attrs.alt, width: n.attrs.width, height: n.attrs.height })}
       </React.Fragment>
     );
   }
