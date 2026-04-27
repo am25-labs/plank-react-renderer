@@ -65,3 +65,7 @@
   margin: 1.25rem 0;
   max-width: 100%;
 }
+
+.plank-renderer > *:last-child {
+  margin-bottom: 0;
+}
