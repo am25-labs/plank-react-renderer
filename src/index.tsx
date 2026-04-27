@@ -50,7 +50,11 @@ function renderNode(
   if (node.type === "text") {
     const textNode = node as TextNode;
     if (!textNode.marks?.length) return textNode.text;
-    return applyMarks(textNode.text, textNode.marks, components, key);
+    return (
+      <React.Fragment key={key}>
+        {applyMarks(textNode.text, textNode.marks, components, key)}
+      </React.Fragment>
+    );
   }
 
   if (node.type === "heading") {
