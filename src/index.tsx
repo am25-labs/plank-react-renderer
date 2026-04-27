@@ -7,9 +7,10 @@ import type {
   MarkType,
   NodeComponents,
   HeadingLevel,
+  ImageNode,
 } from "./types.js";
 
-export type { TiptapDoc, TiptapNode, NodeComponents, HeadingLevel };
+export type { TiptapDoc, TiptapNode, NodeComponents, HeadingLevel, ImageNode };
 
 type Props = {
   content: string | TiptapDoc;
@@ -125,6 +126,21 @@ function renderNode(
     return (
       <React.Fragment key={key}>
         {components.codeBlock({ language, children: text })}
+      </React.Fragment>
+    );
+  }
+
+  if (node.type === "image") {
+    const n = node as ImageNode;
+    return (
+      <React.Fragment key={key}>
+        {components.image({
+          src: n.attrs.src,
+          alt: n.attrs.alt,
+          title: n.attrs.title,
+          width: n.attrs.width,
+          height: n.attrs.height,
+        })}
       </React.Fragment>
     );
   }

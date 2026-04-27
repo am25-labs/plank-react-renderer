@@ -61,6 +61,17 @@ export type CodeBlockNode = {
   content: TextNode[];
 };
 
+export type ImageNode = {
+  type: "image";
+  attrs: {
+    src: string;
+    alt?: string | null;
+    title?: string | null;
+    width?: number | null;
+    height?: number | null;
+  };
+};
+
 export type TiptapNode =
   | TextNode
   | HeadingNode
@@ -69,7 +80,8 @@ export type TiptapNode =
   | OrderedListNode
   | ListItemNode
   | BlockquoteNode
-  | CodeBlockNode;
+  | CodeBlockNode
+  | ImageNode;
 
 export type TiptapDoc = {
   type: "doc";
@@ -107,5 +119,12 @@ export type NodeComponents = {
     rel?: string | null;
     title?: string | null;
     children: React.ReactNode;
+  }) => React.ReactElement;
+  image?: (props: {
+    src: string;
+    alt?: string | null;
+    title?: string | null;
+    width?: number | null;
+    height?: number | null;
   }) => React.ReactElement;
 };

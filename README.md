@@ -48,6 +48,9 @@ Override any node or mark renderer via the `components` prop. Only the nodes you
         {children}
       </a>
     ),
+    image: ({ src, alt }) => (
+      <Image src={src} alt={alt ?? ""} width={800} height={600} className="rounded-lg" />
+    ),
   }}
 />
 ```
@@ -73,6 +76,7 @@ All styles are scoped to the `.plank-renderer` class applied to the wrapper `<di
 | `listItem`        | `<li>` with small bottom margin                                         |
 | `blockquote`      | `<blockquote>` with left border, padding, and italic                    |
 | `codeBlock`       | `<pre><code>` with monospace font, background, and scroll               |
+| `image`           | `<img>` with `src`, `alt`, `title`, `width`, and `height`              |
 
 ## Supported marks
 

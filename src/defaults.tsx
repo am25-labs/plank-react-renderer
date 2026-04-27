@@ -21,4 +21,13 @@ export const defaultComponents: Required<NodeComponents> = {
       {children}
     </a>
   ),
+  image: ({ src, alt, title, width, height }) => (
+    <img
+      src={src}
+      alt={alt ?? undefined}
+      title={title ?? undefined}
+      width={width ?? undefined}
+      height={height ?? undefined}
+    />
+  ),
 };
