@@ -1,27 +1,60 @@
 import type { NodeComponents } from "./types.js";
 
 export const defaultComponents: Required<NodeComponents> = {
-  heading: ({ level, children }) => {
-    if (level === 1) return <h1>{children}</h1>;
-    if (level === 2) return <h2>{children}</h2>;
-    return <h3>{children}</h3>;
+  heading: ({ level, children, isLast, isOnly }) => {
+    const style = { marginBottom: isLast || isOnly ? 0 : undefined } as any;
+    if (level === 1) return <h1 style={style}>{children}</h1>;
+    if (level === 2) return <h2 style={style}>{children}</h2>;
+    return <h3 style={style}>{children}</h3>;
   },
-  paragraph: ({ children }) => <p>{children}</p>,
-  bulletList: ({ children }) => <ul>{children}</ul>,
-  orderedList: ({ start, children }) => <ol start={start}>{children}</ol>,
-  listItem: ({ children }) => <li>{children}</li>,
-  blockquote: ({ children }) => <blockquote>{children}</blockquote>,
-  codeBlock: ({ children }) => (
-    <pre>
+  paragraph: ({ children, isLast, isOnly }) => (
+    <p style={{ marginBottom: isLast || isOnly ? 0 : undefined }}>{children}</p>
+  ),
+  bulletList: ({ children, isLast, isOnly }) => (
+    <ul style={{ marginBottom: isLast || isOnly ? 0 : undefined }}>
+      {children}
+    </ul>
+  ),
+  orderedList: ({ start, children, isLast, isOnly }) => (
+    <ol
+      start={start}
+      style={{ marginBottom: isLast || isOnly ? 0 : undefined }}
+    >
+      {children}
+    </ol>
+  ),
+  listItem: ({ children, isLast, isOnly }) => (
+    <li style={{ marginBottom: isLast || isOnly ? 0 : undefined }}>
+      {children}
+    </li>
+  ),
+  blockquote: ({ children, isLast, isOnly }) => (
+    <blockquote style={{ marginBottom: isLast || isOnly ? 0 : undefined }}>
+      {children}
+    </blockquote>
+  ),
+  codeBlock: ({ children, isLast, isOnly }) => (
+    <pre style={{ marginBottom: isLast || isOnly ? 0 : undefined }}>
       <code>{children}</code>
     </pre>
   ),
   link: ({ href, target, rel, title, children }) => (
-    <a href={href} target={target ?? undefined} rel={rel ?? undefined} title={title ?? undefined}>
+    <a
+      href={href}
+      target={target ?? undefined}
+      rel={rel ?? undefined}
+      title={title ?? undefined}
+    >
       {children}
     </a>
   ),
-  image: ({ src, alt, width, height }) => (
-    <img src={src} alt={alt ?? ""} width={width ?? undefined} height={height ?? undefined} />
+  image: ({ src, alt, width, height, isLast, isOnly }) => (
+    <img
+      src={src}
+      alt={alt ?? ""}
+      width={width ?? undefined}
+      height={height ?? undefined}
+      style={{ marginBottom: isLast || isOnly ? 0 : undefined }}
+    />
   ),
 };

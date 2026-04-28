@@ -21,7 +21,7 @@ function applyMarks(
   text: string,
   marks: MarkType[],
   components: Required<NodeComponents>,
-  key: number
+  key: number,
 ): React.ReactNode {
   return marks.reduce<React.ReactNode>((node, mark) => {
     if (mark.type === "bold") return <strong key={key}>{node}</strong>;
@@ -45,8 +45,16 @@ function applyMarks(
 function renderNode(
   node: TiptapNode,
   components: Required<NodeComponents>,
-  key: number
+  key: number,
+  opts?: { isTopLevel?: boolean; index?: number; total?: number },
 ): React.ReactNode {
+  const isLast =
+    opts?.isTopLevel &&
+    typeof opts.index === "number" &&
+    typeof opts.total === "number" &&
+    opts.index === opts.total - 1;
+  const isOnly =
+    opts?.isTopLevel && typeof opts.total === "number" && opts.total === 1;
   if (node.type === "text") {
     const textNode = node as TextNode;
     if (!textNode.marks?.length) return textNode.text;
@@ -59,33 +67,38 @@ function renderNode(
 
   if (node.type === "heading") {
     const children = node.content.map((child, i) =>
-      renderNode(child, components, i)
+      renderNode(child, components, i),
     );
     return (
       <React.Fragment key={key}>
-        {components.heading({ level: node.attrs.level, children })}
+        {components.heading({
+          level: node.attrs.level,
+          children,
+          isLast,
+          isOnly,
+        })}
       </React.Fragment>
     );
   }
 
   if (node.type === "paragraph") {
     const children = (node.content ?? []).map((child, i) =>
-      renderNode(child, components, i)
+      renderNode(child, components, i),
     );
     return (
       <React.Fragment key={key}>
-        {components.paragraph({ children })}
+        {components.paragraph({ children, isLast, isOnly })}
       </React.Fragment>
     );
   }
 
   if (node.type === "bulletList") {
     const children = node.content.map((child, i) =>
-      renderNode(child, components, i)
+      renderNode(child, components, i),
     );
     return (
       <React.Fragment key={key}>
-        {components.bulletList({ children })}
+        {components.bulletList({ children, isLast, isOnly })}
       </React.Fragment>
     );
   }
@@ -93,33 +106,33 @@ function renderNode(
   if (node.type === "orderedList") {
     const start = node.attrs?.start ?? 1;
     const children = node.content.map((child, i) =>
-      renderNode(child, components, i)
+      renderNode(child, components, i),
     );
     return (
       <React.Fragment key={key}>
-        {components.orderedList({ start, children })}
+        {components.orderedList({ start, children, isLast, isOnly })}
       </React.Fragment>
     );
   }
 
   if (node.type === "listItem") {
     const children = node.content.map((child, i) =>
-      renderNode(child, components, i)
+      renderNode(child, components, i),
     );
     return (
       <React.Fragment key={key}>
-        {components.listItem({ children })}
+        {components.listItem({ children, isLast, isOnly })}
       </React.Fragment>
     );
   }
 
   if (node.type === "blockquote") {
     const children = node.content.map((child, i) =>
-      renderNode(child, components, i)
+      renderNode(child, components, i),
     );
     return (
       <React.Fragment key={key}>
-        {components.blockquote({ children })}
+        {components.blockquote({ children, isLast, isOnly })}
       </React.Fragment>
     );
   }
@@ -129,7 +142,7 @@ function renderNode(
     const language = node.attrs?.language ?? null;
     return (
       <React.Fragment key={key}>
-        {components.codeBlock({ language, children: text })}
+        {components.codeBlock({ language, children: text, isLast, isOnly })}
       </React.Fragment>
     );
   }
@@ -138,7 +151,14 @@ function renderNode(
     const n = node as ImageNode;
     return (
       <React.Fragment key={key}>
-        {components.image({ src: n.attrs.src, alt: n.attrs.alt, width: n.attrs.width, height: n.attrs.height })}
+        {components.image({
+          src: n.attrs.src,
+          alt: n.attrs.alt,
+          width: n.attrs.width,
+          height: n.attrs.height,
+          isLast,
+          isOnly,
+        })}
       </React.Fragment>
     );
   }
@@ -157,7 +177,13 @@ export function PlankRenderer({ content, components }: Props) {
 
   return (
     <div className="plank-renderer">
-      {doc.content.map((node, i) => renderNode(node, resolved, i))}
+      {doc.content.map((node, i) =>
+        renderNode(node, resolved, i, {
+          isTopLevel: true,
+          index: i,
+          total: doc.content.length,
+        }),
+      )}
     </div>
   );
 }

@@ -49,7 +49,13 @@ Override any node or mark renderer via the `components` prop. Only the nodes you
       </a>
     ),
     image: ({ src, alt, width, height }) => (
-      <Image src={src} alt={alt ?? ""} width={width ?? 800} height={height ?? 600} className="rounded-lg" />
+      <Image
+        src={src}
+        alt={alt ?? ""}
+        width={width ?? 800}
+        height={height ?? 600}
+        className="rounded-lg"
+      />
     ),
   }}
 />
@@ -65,6 +71,23 @@ The package ships a pre-compiled stylesheet with sensible defaults. Import it on
 
 All styles are scoped to the `.plank-renderer` class applied to the wrapper `<div>`, so they won't affect the rest of your layout. Override any node via the `components` prop to apply your own classes or styles instead.
 
+## Automatic spacing control
+
+Default components now receive two optional props when rendered at the top level:
+
+- `isLast`: true if the node is the last child in the document.
+- `isOnly`: true if the node is the only child in the document.
+
+These props allow avoiding bottom spacing (for example `margin-bottom`) on the last or only block. The props are optional and custom components continue to work if you don't use them.
+
+Example of a custom component that respects the flag:
+
+```tsx
+heading: ({ level, children, isLast, isOnly }) => (
+  <h2 style={{ marginBottom: isLast || isOnly ? 0 : undefined }}>{children}</h2>
+),
+```
+
 ## Supported nodes
 
 | Node              | Default output                                                          |
@@ -76,7 +99,7 @@ All styles are scoped to the `.plank-renderer` class applied to the wrapper `<di
 | `listItem`        | `<li>` with small bottom margin                                         |
 | `blockquote`      | `<blockquote>` with left border, padding, and italic                    |
 | `codeBlock`       | `<pre><code>` with monospace font, background, and scroll               |
-| `image`           | `<img>` with `src`, `alt`, `title`, `width`, and `height`              |
+| `image`           | `<img>` with `src`, `alt`, `title`, `width`, and `height`               |
 
 ## Supported marks
 

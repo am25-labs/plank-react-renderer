@@ -91,26 +91,40 @@ export type NodeComponents = {
   heading?: (props: {
     level: HeadingLevel;
     children: React.ReactNode;
+    isLast?: boolean;
+    isOnly?: boolean;
   }) => React.ReactElement;
   paragraph?: (props: {
     children: React.ReactNode;
+    isLast?: boolean;
+    isOnly?: boolean;
   }) => React.ReactElement;
   bulletList?: (props: {
     children: React.ReactNode;
+    isLast?: boolean;
+    isOnly?: boolean;
   }) => React.ReactElement;
   orderedList?: (props: {
     start: number;
     children: React.ReactNode;
+    isLast?: boolean;
+    isOnly?: boolean;
   }) => React.ReactElement;
   listItem?: (props: {
     children: React.ReactNode;
+    isLast?: boolean;
+    isOnly?: boolean;
   }) => React.ReactElement;
   blockquote?: (props: {
     children: React.ReactNode;
+    isLast?: boolean;
+    isOnly?: boolean;
   }) => React.ReactElement;
   codeBlock?: (props: {
     language: string | null;
     children: React.ReactNode;
+    isLast?: boolean;
+    isOnly?: boolean;
   }) => React.ReactElement;
   link?: (props: {
     href: string;
@@ -124,5 +138,7 @@ export type NodeComponents = {
     alt?: string | null;
     width?: number | null;
     height?: number | null;
+    isLast?: boolean;
+    isOnly?: boolean;
   }) => React.ReactElement;
 };
