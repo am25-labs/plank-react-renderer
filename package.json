@@ -1,6 +1,6 @@
 {
   "name": "@am25/plank-react-renderer",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "React renderer for Plank CMS rich text content.",
   "type": "module",
   "main": "dist/index.js",
