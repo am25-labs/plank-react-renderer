@@ -80,6 +80,8 @@ Default components now receive two optional props when rendered at the top level
 
 These props allow avoiding bottom spacing (for example `margin-bottom`) on the last or only block. The props are optional and custom components continue to work if you don't use them.
 
+Additionally, the renderer will add inline `margin-bottom: 0` and `padding-bottom: 0` to the last/only top-level block (`isLast`/`isOnly`) to neutralize utility classes (e.g. Tailwind `pb-*`). Custom components can opt-in to read these props but no change is required for correct results.
+
 Example of a custom component that respects the flag:
 
 ```tsx

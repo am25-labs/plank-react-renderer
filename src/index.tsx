@@ -19,7 +19,7 @@ type Props = {
 
 function applyMarks(
   text: string,
-  marks: MarkType[],
+  marks: MarkType[] = [],
   components: Required<NodeComponents>,
   key: number,
 ): React.ReactNode {
@@ -55,6 +55,18 @@ function renderNode(
     opts.index === opts.total - 1;
   const isOnly =
     opts?.isTopLevel && typeof opts.total === "number" && opts.total === 1;
+
+  function overrideSpacing(el: React.ReactNode) {
+    if (!isLast && !isOnly) return el;
+    if (React.isValidElement(el)) {
+      const existing = (el.props && el.props.style) || {};
+      return React.cloneElement(el, {
+        style: { ...existing, marginBottom: 0, paddingBottom: 0 },
+      });
+    }
+    return el;
+  }
+
   if (node.type === "text") {
     const textNode = node as TextNode;
     if (!textNode.marks?.length) return textNode.text;
@@ -71,12 +83,14 @@ function renderNode(
     );
     return (
       <React.Fragment key={key}>
-        {components.heading({
-          level: node.attrs.level,
-          children,
-          isLast,
-          isOnly,
-        })}
+        {overrideSpacing(
+          components.heading({
+            level: node.attrs.level,
+            children,
+            isLast,
+            isOnly,
+          }),
+        )}
       </React.Fragment>
     );
   }
@@ -87,7 +101,7 @@ function renderNode(
     );
     return (
       <React.Fragment key={key}>
-        {components.paragraph({ children, isLast, isOnly })}
+        {overrideSpacing(components.paragraph({ children, isLast, isOnly }))}
       </React.Fragment>
     );
   }
@@ -98,7 +112,7 @@ function renderNode(
     );
     return (
       <React.Fragment key={key}>
-        {components.bulletList({ children, isLast, isOnly })}
+        {overrideSpacing(components.bulletList({ children, isLast, isOnly }))}
       </React.Fragment>
     );
   }
@@ -110,7 +124,9 @@ function renderNode(
     );
     return (
       <React.Fragment key={key}>
-        {components.orderedList({ start, children, isLast, isOnly })}
+        {overrideSpacing(
+          components.orderedList({ start, children, isLast, isOnly }),
+        )}
       </React.Fragment>
     );
   }
@@ -121,7 +137,7 @@ function renderNode(
     );
     return (
       <React.Fragment key={key}>
-        {components.listItem({ children, isLast, isOnly })}
+        {overrideSpacing(components.listItem({ children, isLast, isOnly }))}
       </React.Fragment>
     );
   }
@@ -132,7 +148,7 @@ function renderNode(
     );
     return (
       <React.Fragment key={key}>
-        {components.blockquote({ children, isLast, isOnly })}
+        {overrideSpacing(components.blockquote({ children, isLast, isOnly }))}
       </React.Fragment>
     );
   }
@@ -142,7 +158,9 @@ function renderNode(
     const language = node.attrs?.language ?? null;
     return (
       <React.Fragment key={key}>
-        {components.codeBlock({ language, children: text, isLast, isOnly })}
+        {overrideSpacing(
+          components.codeBlock({ language, children: text, isLast, isOnly }),
+        )}
       </React.Fragment>
     );
   }
@@ -151,14 +169,16 @@ function renderNode(
     const n = node as ImageNode;
     return (
       <React.Fragment key={key}>
-        {components.image({
-          src: n.attrs.src,
-          alt: n.attrs.alt,
-          width: n.attrs.width,
-          height: n.attrs.height,
-          isLast,
-          isOnly,
-        })}
+        {overrideSpacing(
+          components.image({
+            src: n.attrs.src,
+            alt: n.attrs.alt,
+            width: n.attrs.width,
+            height: n.attrs.height,
+            isLast,
+            isOnly,
+          }),
+        )}
       </React.Fragment>
     );
   }
