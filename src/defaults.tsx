@@ -29,9 +29,11 @@ export const defaultComponents: Required<NodeComponents> = {
     </li>
   ),
   blockquote: ({ children, isLast, isOnly }) => (
-    <blockquote style={{ marginBottom: isLast || isOnly ? 0 : undefined }}>
-      {children}
-    </blockquote>
+    <div className="blockquote-wrapper">
+      <blockquote style={{ marginBottom: isLast || isOnly ? 0 : undefined }}>
+        {children}
+      </blockquote>
+    </div>
   ),
   codeBlock: ({ children, isLast, isOnly }) => (
     <pre style={{ marginBottom: isLast || isOnly ? 0 : undefined }}>
