@@ -1,5 +1,5 @@
 {
-  "name": "@am25/plank-react-renderer",
+  "name": "@plank-cms/react-renderer",
   "version": "0.5.3",
   "description": "React renderer for Plank CMS rich text content.",
   "type": "module",
@@ -26,17 +26,19 @@
     "url": "https://alemartir.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/am25-labs/plank-react-renderer#readme",
+  "homepage": "https://github.com/plank-cms/react-renderer#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/am25-labs/plank-react-renderer.git"
+    "url": "git+https://github.com/plank-cms/react-renderer.git"
   },
   "bugs": {
-    "url": "https://github.com/am25-labs/plank-react-renderer/issues"
+    "url": "https://github.com/plank-cms/react-renderer/issues"
   },
   "keywords": [
     "cms",
     "headless-cms",
+    "plank",
+    "plank-cms",
     "rich-text",
     "tiptap",
     "react",
