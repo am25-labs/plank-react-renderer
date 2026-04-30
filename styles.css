@@ -37,7 +37,7 @@
 }
 
 .plank-renderer blockquote {
-  font-size: 135%;
+  font-size: 130%;
   border-left: 2px solid currentColor;
   padding-left: 1rem;
   margin: 1rem 0;
@@ -45,8 +45,8 @@
 }
 
 .plank-renderer .blockquote-wrapper {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .plank-renderer pre {
