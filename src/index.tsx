@@ -173,6 +173,7 @@ function renderNode(
           components.image({
             src: n.attrs.src,
             alt: n.attrs.alt,
+            title: n.attrs.title,
             width: n.attrs.width,
             height: n.attrs.height,
             isLast,

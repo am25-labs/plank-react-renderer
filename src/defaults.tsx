@@ -50,13 +50,32 @@ export const defaultComponents: Required<NodeComponents> = {
       {children}
     </a>
   ),
-  image: ({ src, alt, width, height, isLast, isOnly }) => (
-    <img
-      src={src}
-      alt={alt ?? ""}
-      width={width ?? undefined}
-      height={height ?? undefined}
-      style={{ marginBottom: isLast || isOnly ? 0 : undefined }}
-    />
-  ),
+  image: ({ src, alt, title, width, height, isLast, isOnly }) => {
+    const style = { marginBottom: isLast || isOnly ? 0 : undefined };
+    if (!title) {
+      return (
+        <img
+          src={src}
+          alt={alt ?? ""}
+          title={title ?? undefined}
+          width={width ?? undefined}
+          height={height ?? undefined}
+          style={style}
+        />
+      );
+    }
+
+    return (
+      <figure style={style}>
+        <img
+          src={src}
+          alt={alt ?? ""}
+          title={title ?? undefined}
+          width={width ?? undefined}
+          height={height ?? undefined}
+        />
+        <figcaption>{title}</figcaption>
+      </figure>
+    );
+  },
 };

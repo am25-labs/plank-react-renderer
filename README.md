@@ -48,10 +48,11 @@ Override any node or mark renderer via the `components` prop. Only the nodes you
         {children}
       </a>
     ),
-    image: ({ src, alt, width, height }) => (
+    image: ({ src, alt, title, width, height }) => (
       <Image
         src={src}
         alt={alt ?? ""}
+        title={title ?? undefined}
         width={width ?? 800}
         height={height ?? 600}
         className="rounded-lg"
@@ -101,11 +102,21 @@ heading: ({ level, children, isLast, isOnly }) => (
 | `listItem`        | `<li>` with small bottom margin                                         |
 | `blockquote`      | `<blockquote>` with left border, padding, and italic                    |
 | `codeBlock`       | `<pre><code>` with monospace font, background, and scroll               |
-| `image`           | `<img>` with `src`, `alt`, `title`, `width`, and `height`               |
+| `image`           | `<img>` or `<figure><img /><figcaption /></figure>` with image metadata  |
 
 ## Supported marks
 
 `bold`, `italic`, `underline`, `strike`, `code`, `link`
+
+## Image captions
+
+When a Tiptap image node includes `attrs.title`, the default renderer uses it in two places:
+
+- as the image `title` attribute
+- as a visible `<figcaption>` under the image
+
+This matches Plank CMS rich text images where the media subtitle is inserted into Tiptap as
+`title`.
 
 ## License
 
